@@ -1,0 +1,29 @@
+steps:
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/plenary-glass-401802/ancy-100925334/${SHORT_SHA}', '.']
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/plenary-glass-401802/ancy-100925334/${SHORT_SHA}']
+  
+
+# setup cloud sdk
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud run deploy ancy-cloudrun-service --image=us-central1-docker.pkg.dev/plenary-glass-401802/ancy-100925334/${SHORT_SHA} --platform=managed --region=us-central1 --port=3000
+
+    
+images:
+  ##provide image info##
+  - 'us-central1-docker.pkg.dev/plenary-glass-401802/ancy-100925334/${SHORT_SHA}'
+
+  
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+    
+substitutions:
+  _BUCKET_NAME: 'ancy-bucket'
