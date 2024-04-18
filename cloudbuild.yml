@@ -3,7 +3,7 @@ steps:
   - name: 'infra-project-repo'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/radiant-octane-405301/cloud_infra_group_projectt-main-result/${SHORT_SHA}', '.']
   # Docker Push
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'infra-project-repo'
     args: ['push', 'us-central1-docker.pkg.dev/radiant-octane-405301/cloud_infra_group_projectt-main-result/${SHORT_SHA}']
  
 # setup cloud sdk
