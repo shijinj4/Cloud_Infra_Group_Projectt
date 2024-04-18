@@ -1,13 +1,13 @@
 steps:
   # Docker Build
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'infra-project-repo'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/radiant-octane-405301/cloud_infra_group_projectt-main-result/${SHORT_SHA}', '.']
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/radiant-octane-405301/cloud_infra_group_projectt-main-result/${SHORT_SHA}']
  
 # setup cloud sdk
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'infra-project-repo'
     entrypoint: 'bash'
     args:
       - '-c'
@@ -18,14 +18,14 @@ steps:
 
 steps:
   # Docker Build
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'infra-project-repo'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/radiant-octane-405301/cloud_infra_group_projectt-main-vote/${SHORT_SHA}', '.']
   # Docker Push
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'infra-project-repo'
     args: ['push', 'us-central1-docker.pkg.dev/radiant-octane-405301/cloud_infra_group_projectt-main-vote/${SHORT_SHA}']
  
 # setup cloud sdk
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'infra-project-repo'
     entrypoint: 'bash'
     args:
       - '-c'
